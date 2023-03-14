@@ -1,11 +1,24 @@
 import { prisma } from '../prisma.js';
 
 class TaskService {
-	async getAll() {
+	async getAll(page) {
 		try {
-			const tasks = await prisma.task.findMany();
+			const PER_PAGE = 3;
+			const currentPage = Number(page || 1);
+			const options = {
+				take: PER_PAGE,
+				skip: (currentPage - 1) * PER_PAGE,
+			};
 
-			return tasks;
+			const [tasks, count] = await Promise.all([
+				prisma.task.findMany(options),
+				prisma.task.count(),
+			]);
+
+			return {
+				tasks,
+				total_count: count,
+			};
 		} catch (error) {
 			throw new Error();
 		}

@@ -3,11 +3,11 @@ import TaskService from '../services/task-service.js';
 class TaskController {
 	async getAllTasks(req, res, next) {
 		try {
-			const tasks = await TaskService.getAll();
+			const { page } = req.query;
 
-			res.status(200).json({
-				tasks,
-			});
+			const tasks = await TaskService.getAll(page);
+
+			res.status(200).json(tasks);
 		} catch (error) {
 			next(error);
 		}
