@@ -5,11 +5,12 @@ class AuthController {
 		try {
 			const { name, password } = req.body;
 
-			const user = await AuthService.login(name, password);
+			const { user, token } = await AuthService.login(name, password);
 
 			res.status(200).json({
 				name: user.name,
 				isAdmin: user.isAdmin,
+				token,
 			});
 		} catch (error) {
 			next(error);
