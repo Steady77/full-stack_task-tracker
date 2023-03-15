@@ -1,0 +1,13 @@
+@import 'src/assets/styles/variables';
+
+.button {
+	font-family: $default-font;
+	border: none;
+	background-color: $black;
+	color: $white;
+	padding: 8px 20px;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 600;
+}

@@ -1,0 +1,26 @@
+@import 'src/assets/styles/variables';
+
+.fieldWrapper {
+	position: relative;
+	margin-bottom: 25px;
+}
+
+.field {
+	background-color: $white;
+	outline: none;
+	border-radius: 10px;
+	border: 1px solid $dark-gray;
+	padding: 5px 15px;
+	font-size: 18px;
+	font-family: $default-font;
+	width: 300px;
+}
+
+.error {
+	position: absolute;
+	left: 0;
+	bottom: -22px;
+	color: red;
+	width: 100%;
+	text-align: center;
+}
