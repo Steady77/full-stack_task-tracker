@@ -11,6 +11,7 @@ class AuthService {
 
 		if (!user) throw new Error('Пользователь не найден');
 
+		// упрощенная авторизация
 		const isValidPassword = user.password === password;
 
 		if (isValidPassword) {
