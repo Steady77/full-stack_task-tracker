@@ -1,5 +1,6 @@
 import ApiError from '../exeptions/api-error.js';
 import { prisma } from '../prisma.js';
+import { generateToken } from '../utils/generate-token.js';
 
 class AuthService {
 	async login(name, password) {
@@ -15,7 +16,8 @@ class AuthService {
 		const isValidPassword = user.password === password;
 
 		if (isValidPassword) {
-			return user;
+			const token = generateToken(user.id);
+			return { user, token };
 		} else {
 			throw ApiError.UnauthorizedError('Неверное имя или пароль');
 		}
