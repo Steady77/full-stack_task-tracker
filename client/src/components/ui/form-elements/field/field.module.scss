@@ -8,7 +8,7 @@
 .field {
 	background-color: $white;
 	outline: none;
-	border-radius: 10px;
+	border-radius: $br-10;
 	border: 1px solid $dark-gray;
 	padding: 5px 15px;
 	font-size: 18px;

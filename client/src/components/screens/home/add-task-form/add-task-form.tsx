@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { validEmail } from '../../../../utils/regex';
 import Button from '../../../ui/form-elements/button/button';
 import { useActions } from '../../../../hooks/use-actions';
+import { ToastContainer, toast } from 'react-toastify';
 
 interface TaskField {
 	name: string;
@@ -27,6 +28,7 @@ const AddTaskForm: FC = () => {
 
 	const addTask: SubmitHandler<TaskField> = (data) => {
 		createTask(data);
+		toast('Задача добавлена');
 		reset();
 	};
 
@@ -40,6 +42,10 @@ const AddTaskForm: FC = () => {
 				<Field
 					{...register('email', {
 						required: 'Введите почту',
+						maxLength: {
+							value: 30,
+							message: 'Не более 30 символов',
+						},
 						pattern: {
 							value: validEmail,
 							message: 'Введите корректный адрес почты',
@@ -51,6 +57,10 @@ const AddTaskForm: FC = () => {
 				<Field
 					{...register('name', {
 						required: 'Введите имя',
+						maxLength: {
+							value: 15,
+							message: 'Не более 15 символов',
+						},
 					})}
 					placeholder="Имя"
 					error={errors.name}
@@ -67,6 +77,7 @@ const AddTaskForm: FC = () => {
 					error={errors.text}
 				/>
 				<Button>Добавить</Button>
+				<ToastContainer />
 			</form>
 		</>
 	);

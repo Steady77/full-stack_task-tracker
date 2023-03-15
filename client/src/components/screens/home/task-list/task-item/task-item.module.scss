@@ -1,0 +1,36 @@
+@import 'src/assets/styles/variables';
+
+.item {
+	background-color: $primary;
+	padding: 10px;
+	border-radius: $br-10;
+	box-shadow: $bx-primary;
+	color: $black;
+
+	&:not(:last-child) {
+		margin-bottom: 10px;
+	}
+}
+
+.taskText {
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.checkboxs {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.user {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+.done {
+	background-color: $gray;
+	box-shadow: $bx-16;
+}
