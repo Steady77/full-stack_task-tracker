@@ -22,8 +22,8 @@ export const useTasks = () => {
 		['create task'],
 		(data: TaskField) => TaskService.createTask(data),
 		{
-			onError: (error) => {
-				console.log(error);
+			onError: (error: any) => {
+				toast.error(error, { delay: 10 });
 			},
 
 			onSuccess: () => {
