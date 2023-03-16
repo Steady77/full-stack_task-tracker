@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export const checkAuth = async (req, res, next) => {
+export const checkRole = async (req, res, next) => {
 	try {
 		const token = req.headers.authorization.split(' ')[1];
 
@@ -9,6 +9,10 @@ export const checkAuth = async (req, res, next) => {
 		}
 
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+		if (!decoded.isAdmin) {
+			return res.status(403).json({ message: 'Нет доступа' });
+		}
 
 		req.user = decoded;
 		next();
