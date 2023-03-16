@@ -1,14 +1,31 @@
 import { prisma } from '../prisma.js';
 
 class TaskService {
-	async getAll(page) {
+	async getAll(page, sortBy, orderBy) {
 		try {
 			const PER_PAGE = 3;
 			const currentPage = Number(page || 1);
-			const options = {
+
+			const limitOptions = {
 				take: PER_PAGE,
 				skip: (currentPage - 1) * PER_PAGE,
 			};
+
+			let options;
+
+			if (!sortBy && !orderBy) {
+				options = {
+					orderBy: [{ name: 'asc' }],
+					...limitOptions,
+				};
+			}
+
+			if (sortBy && orderBy) {
+				options = {
+					orderBy: [{ [sortBy]: orderBy }],
+					...limitOptions,
+				};
+			}
 
 			const [tasks, count] = await Promise.all([
 				prisma.task.findMany(options),
