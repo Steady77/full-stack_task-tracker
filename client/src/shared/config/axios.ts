@@ -6,7 +6,7 @@ export const axiosServer = axios.create({
 	baseURL: SERVER_URL,
 	headers: {
 		'Content-Type': 'application/json',
-		authorization: localStorage.getItem(TOKEN)
+		Authorization: localStorage.getItem(TOKEN)
 			? `Bearer ${localStorage.getItem(TOKEN)}`
 			: '',
 	},
