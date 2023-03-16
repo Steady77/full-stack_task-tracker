@@ -3,18 +3,15 @@ import Field from '../../../ui/form-elements/field/field';
 import Heading from '../../../ui/heading/heading';
 import style from './add-task-form.module.scss';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { validEmail } from '../../../../utils/regex';
+import { validEmail } from '../../../../shared/utils/regex';
 import Button from '../../../ui/form-elements/button/button';
-import { useActions } from '../../../../hooks/use-actions';
-import { ToastContainer, toast } from 'react-toastify';
+import { TaskField } from '../../../../shared/types/task.types';
 
-interface TaskField {
-	name: string;
-	email: string;
-	text: string;
+interface AddTaskFormProps {
+	createTask: (data: TaskField) => void;
 }
 
-const AddTaskForm: FC = () => {
+const AddTaskForm: FC<AddTaskFormProps> = ({ createTask }) => {
 	const {
 		register,
 		handleSubmit,
@@ -24,11 +21,8 @@ const AddTaskForm: FC = () => {
 		mode: 'onChange',
 	});
 
-	const { createTask } = useActions();
-
 	const addTask: SubmitHandler<TaskField> = (data) => {
 		createTask(data);
-		toast('Задача добавлена');
 		reset();
 	};
 
@@ -77,7 +71,6 @@ const AddTaskForm: FC = () => {
 					error={errors.text}
 				/>
 				<Button>Добавить</Button>
-				<ToastContainer />
 			</form>
 		</>
 	);
