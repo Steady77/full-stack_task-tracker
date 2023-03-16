@@ -10,13 +10,13 @@ class AuthService {
 			},
 		});
 
-		if (!user) throw new Error('Пользователь не найден');
+		if (!user) throw new Error('Неверное имя или пароль');
 
-		// упрощенная авторизация
+		// упрощенная проверка пароля без шифрования
 		const isValidPassword = user.password === password;
 
 		if (isValidPassword) {
-			const token = generateToken(user.id);
+			const token = generateToken(user.id, user.isAdmin);
 			return { user, token };
 		} else {
 			throw ApiError.UnauthorizedError('Неверное имя или пароль');
