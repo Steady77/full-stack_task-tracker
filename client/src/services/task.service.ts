@@ -1,6 +1,7 @@
 import { getAdminUrl, getTasksUrl, getTaskUrl } from '../shared/config/api';
 import { axiosServer } from '../shared/config/axios';
 import { Task, TaskField, TaskResponse } from '../shared/types/task.types';
+import { TOKEN } from '../shared/utils/consts';
 import { errorCatch } from '../shared/utils/error-catch';
 
 export const TaskService = {
@@ -32,10 +33,18 @@ export const TaskService = {
 
 	async editTask(id: string, text: string, isDone: boolean) {
 		try {
-			const response = await axiosServer.put<Task>(getAdminUrl(`/task/${id}`), {
-				text,
-				isDone,
-			});
+			const response = await axiosServer.put<Task>(
+				getAdminUrl(`/task/${id}`),
+				{
+					text,
+					isDone,
+				},
+				{
+					headers: {
+						authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
+					},
+				},
+			);
 
 			return response.data;
 		} catch (error) {
