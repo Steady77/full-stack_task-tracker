@@ -1,8 +1,13 @@
-# Full-stack task-tracker
+## Full-stack task-tracker, тестовое задание для BeeJee
 
-## Тестовое задание
+**[Ссылка на демо](https://task-tracker-steady77.vercel.app/)**
 
-## ТЗ
+### Стэк:
+
+- **Front:** React, TypeScript, React Query, React Hook Form, SCSS
+- **Back:** Express, Postgres, Prisma, JWT
+
+### ТЗ:
 
 **Требования к коду**
 
