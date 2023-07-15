@@ -1,6 +1,6 @@
 ## Full-stack task-tracker, тестовое задание для BeeJee
 
-**[Ссылка на демо](https://task-tracker-steady77.vercel.app/)**
+## **[Ссылка на демо](https://task-tracker-steady77.vercel.app/)**
 
 ### Стэк:
 
